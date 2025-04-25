@@ -1,15 +1,13 @@
 import { buttons } from './Buttons'
 import styles from './app.module.css'
 import { BUTTON_GROUP } from './constants'
-import { useSelector } from 'react-redux'
 import { store } from './app/store'
+import { useState } from 'react'
 function App() {
+  const [data, setData] = useState(store.getState())
+  store.subscribe(() => setData(store.getState))
 
-  const operand1 = useSelector(state => state.operand1)
-  const operand2 = useSelector(state => state.operand2)
-  const operator = useSelector(state => state.operator)
-  const isResult = useSelector(state => state.isResult)
-
+  const { operand1, operand2, operator, isResult } = data
 
   const screenClassName = styles.sceen + (isResult ? ' ' + styles.screenResult : '')
   const output = operand1 + (operator && ' ' + operator) + (operand2 && ' ' + operand2)

@@ -6,4 +6,4 @@ export const store = configureStore({
 	reducer: calculateSlice,
 },)
 
-store.subscribe(() => store.getState())
+// store.subscribe(() => store.getState())
